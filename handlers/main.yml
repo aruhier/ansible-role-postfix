@@ -18,7 +18,6 @@
   service:
     name: 'postfix'
     state: 'restarted'
-  notify: [ 'Restart ferm' ]
 
 - name: Reload postfix
   service:
