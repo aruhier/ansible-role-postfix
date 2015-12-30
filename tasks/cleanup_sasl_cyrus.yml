@@ -2,6 +2,6 @@
 
 - name: Remove unwanted files if Cyrus-SASL is disabled
   file:
-    path: '/etc/default/saslauthd-smtpd'
+    path: '/etc/default/saslauthd'
     state: 'absent'
   notify: [ 'Restart saslauthd' ]

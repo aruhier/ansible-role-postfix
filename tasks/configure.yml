@@ -59,6 +59,13 @@
   with_items: [ 'main.cf', 'master.cf' ]
   notify: [ 'Check postfix', 'Reload postfix' ]
 
+- name: copy necessary files for chroot
+  file:
+    path: '/var/spool/postfix/etc/'
+    state: 'directory'
+- shell: 'cp /etc/services /var/spool/postfix/etc/services'
+- shell: 'cp /etc/resolv.conf /var/spool/postfix/etc/resolv.conf'
+
 - name: Generate Postfix tables sources
   template:
     src: '{{ item }}'
@@ -122,4 +129,9 @@
     group: 'root'
     mode: '0644'
   notify: [ 'Restart postfix' ]
+
+- name: Enable Postfix service
+  service:
+    name: 'postfix'
+    enabled: yes
 

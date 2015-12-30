@@ -3,9 +3,9 @@ Ansible Role: Postfix
 
 This role installs and manages [Postfix](http://postfix.org/), an SMTP server.
 
-The `trinaps.postfix` role is designed to manage Postfix on different hosts in
-a cluster, with different "capabilities". At the moment the role can configure
-Postfix to act as:
+This role is designed to manage Postfix on different hosts in a cluster, with
+different "capabilities". At the moment the role can configure Postfix to act
+as:
 
 * a null client: Postfix sends all mail to another system specified
   either via DNS MX records or an Ansible variable, no local mail is enabled
@@ -24,7 +24,7 @@ Postfix to act as:
 ### Documentation
 
 This is a fork of `debops.postfix`. This is the same role, without all the
-dependencies.
+dependencies, and target ArchLinux.
 
 More information about `debops.postfix` can be found in the
 [official debops.postfix documentation](http://docs.debops.org/en/latest/ansible/roles/ansible-postfix/docs/).
@@ -33,6 +33,7 @@ More information about `debops.postfix` can be found in the
 ### Authors and license
 
 `postfix` role was written by:
+- Anthony Ruhier | [e-mail](mailto:anthony.ruhier@gmail.com)
 - TRINAPS, Anthony Ruhier | [e-mail](mailto:anthony.ruhier@trinaps.com)
 - Maciej Delmanowski | [e-mail](mailto:drybjed@gmail.com) | [Twitter](https://twitter.com/drybjed) | [GitHub](https://github.com/drybjed)
 
