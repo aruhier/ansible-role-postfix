@@ -1,10 +1,23 @@
 Changelog
 =========
 
+v0.1.1
+------
+
+*Released: 2016-01-11*
+
+- Remove redundant reload handlers and use only 1 handler to restart Postfix.
+  [drybjed]
+
+- Remove not needed task that cleans up the firewall configuration. [drybjed]
+
+- Use ``$LC_ALL`` variable instead of ``$LC_MESSAGES`` in a task to get the
+  expected ``make`` output. [drybjed]
+
 v0.1.0
 ------
 
-*Unreleased*
+*Released: 2015-11-25*
 
 - First release [drybjed]
 
@@ -25,4 +38,16 @@ v0.1.0
 
 - Automatically enable or disable TLS certificates depending on status of the
   ``debops.pki`` role. [drybjed]
+
+- Use the Diffie-Hellman parameter files managed by ``debops.dhparam`` Ansible
+  role. [drybjed]
+
+- Add ``postfix_capabilities`` variable which will define the list of Postfix
+  capabilities. The old ``postfix`` variable is still present and will be
+  removed at a later time. [drybjed]
+
+- Purge other SMTP server packages when Postfix is installed. [drybjed]
+
+- Replace the filewall configuration file with list of ``debops.ferm``
+  configuration rules defined in default variables. [drybjed]
 

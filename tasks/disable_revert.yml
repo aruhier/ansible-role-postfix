@@ -7,10 +7,14 @@
   with_items: [ '/etc/postfix/postfix-capabilities' ]
 
 - name: Move Postfix configuration out of the way before reversion
-  command: rm -f /etc/postfix/{{ item }} removes=/etc/postfix/{{ item }}.dpkg-divert
+  command: rm -f /etc/postfix/{{ item }}
+  args:
+    removes: '/etc/postfix/{{ item }}.dpkg-divert'
   with_items: [ 'main.cf', 'master.cf' ]
 
 - name: Move alias database out of the way before reversion
-  command: rm -f /etc/aliases removes=/etc/aliases.dpkg-divert
+  command: rm -f /etc/aliases
+  args:
+    removes: '/etc/aliases.dpkg-divert'
 
 - include: cleanup_sasl_cyrus.yml

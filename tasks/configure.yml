@@ -57,7 +57,7 @@
     group: 'root'
     mode: '0644'
   with_items: [ 'main.cf', 'master.cf' ]
-  notify: [ 'Check postfix', 'Reload postfix' ]
+  notify: [ 'Check postfix and restart' ]
 
 - name: copy necessary files for chroot
   file:
@@ -116,8 +116,10 @@
 
 - name: Run tasks from Postfix Makefile
   environment:
-    LC_MESSAGES: 'C'
-  command: make chdir=/etc/postfix
+    LC_ALL: 'C'
+  command: make
+  args:
+    chdir: '/etc/postfix'
   register: postfix_register_make
   changed_when: "not postfix_register_make.stdout.startswith('make: Nothing to be done')"
 
@@ -128,7 +130,7 @@
     owner: 'root'
     group: 'root'
     mode: '0644'
-  notify: [ 'Restart postfix' ]
+  notify: [ 'Check postfix and restart' ]
 
 - name: Enable Postfix service
   service:

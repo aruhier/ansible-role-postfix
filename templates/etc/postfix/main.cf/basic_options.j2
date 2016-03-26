@@ -7,7 +7,7 @@ delay_warning_time              = {{ postfix_delay_warning_time | default('4h') 
 enable_long_queue_ids           = {{ postfix_long_queue_ids | default('yes') }}
 
 {% if 'local' in postfix %}
-myorigin                        = /etc/mailname
+myorigin                        = {{ ansible_fqdn }}
 {% else %}
 {% if ((postfix_mydomain is defined and postfix_mydomain) or (ansible_domain is defined and ansible_domain)) %}
 myorigin                        = $mydomain
