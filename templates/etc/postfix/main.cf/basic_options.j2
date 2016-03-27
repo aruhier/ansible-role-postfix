@@ -84,7 +84,7 @@ relay_domains                   = {{ get.list('relay_domains', postfix_tpl_relay
 relay_recipient_maps            = {{ get.list('relay_recipient_maps', postfix_tpl_relay_recipient_maps) }}
 show_user_unknown_table_name    = no
 {% endif %}
-{% if postfix_relayhost is defined and postfix_relayhost %}
+{% if postfix_relayhost is defined %}
 {% if postfix_relayhost == True %}
 relayhost                       = {{ ansible_domain }}
 
