@@ -100,6 +100,7 @@ relayhost                       = {{ postfix_relayhost }}
 
 {%         endif %}
 {%     endif %}
+{% endif %}
 
 {% set postfix_tpl_transport_maps = [] %}
 {% if postfix_transport_maps is defined and postfix_transport_maps %}
