@@ -10,13 +10,13 @@ all: $(HASH_ALIASES) $(HASH_TABLES) $(PRIVATE_HASH_TABLES)
 
 
 hash_aliases/%.db: hash_aliases/%.in
-	@postalias "$<" && mv -- "$<.db" "$@"
+	@cd hash_aliases; postalias "$*.in" && cd .. && mv -- "$<.db" "$@"
 
 hash_tables/%.db: hash_tables/%.in
-	@postmap "$<" && mv -- "$<.db" "$@"
+	@cd hash_tables; postalias "$*.in" && cd .. && mv -- "$<.db" "$@"
 
 private_hash_tables/%.db: private_hash_tables/%.in
-	@postmap "$<" && mv -- "$<.db" "$@" && touch "$(patsubst %.in,%.lock,$<)" && rm -f "$<"
+	@cd private_hash_tables; postalias "$*.in" && cd .. && mv -- "$<.db" "$@" && touch "$(patsubst %.in,%.lock,$<)" && rm -f "$<"
 
 clean:
 	@rm -f hash_aliases/*.db hash_tables/*.db private_hash_tables/*.db
