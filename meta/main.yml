@@ -2,9 +2,10 @@
 
 galaxy_info:
   author: 'Anthony Ruhier'
-  description: 'Install and configure SNMP service'
+  description: 'Install and configure Postfix service'
   license: 'GPLv3'
   min_ansible_version: '1.7.0'
+
   platforms:
   - name: ArchLinux
   categories:
