@@ -1,10 +1,10 @@
 ---
 
 - name: Install Postfix base packages
-  pacman:
+  package:
     name: '{{ item }}'
     state: 'present'
   with_items:
-    - [ 'postfix', ]
+    - 'postfix'
     - '{{ postfix_packages }}'
   when: item is defined and item
