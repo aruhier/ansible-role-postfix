@@ -4,7 +4,7 @@
 
 {% if 'local' in postfix %}
 {%     if postfix_local_aliases is defined and postfix_local_aliases %}
-{%         for alias, list in postfix_local_aliases.iteritems() %}
+{%         for alias, list in postfix_local_aliases.items() %}
 {%             if list %}
 {{ "%-24s" | format(alias + ":") }} {{ ", ".join(list) }}
 {%             else %}
@@ -12,7 +12,7 @@
 {%             endif %}
 {%         endfor %}
 {%     if postfix_default_local_aliases is defined and postfix_default_local_aliases %}
-{%         for alias, list in postfix_default_local_aliases.iteritems() %}
+{%         for alias, list in postfix_default_local_aliases.items() %}
 {%             if list and alias not in postfix_local_aliases.keys() %}
 {{ "%-24s" | format(alias + ":") }} {{ ", ".join(list) }}
 {%             elif not list and alias not in postfix_local_aliases.keys() %}
@@ -22,7 +22,7 @@
 {%     endif %}
 {% else %}
 {%     if postfix_default_local_aliases is defined and postfix_default_local_aliases %}
-{%         for alias, list in postfix_default_local_aliases.iteritems() %}
+{%         for alias, list in postfix_default_local_aliases.items() %}
 {%             if list %}
 {{ "%-24s" | format(alias + ":") }} {{ ", ".join(list) }}
 {%             else %}

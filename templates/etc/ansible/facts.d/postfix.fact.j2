@@ -24,7 +24,7 @@
 {% if (ansible_local is defined and ansible_local) and
       (ansible_local.postfix is defined and ansible_local.postfix) and
       (ansible_local.postfix.lists is defined and ansible_local.postfix.lists)        %}
-{%   for fact_key, fact_values in ansible_local.postfix.lists.iteritems()             %}
+{%   for fact_key, fact_values in ansible_local.postfix.lists.items()             %}
 {%     set postfix_tpl_local_list = []                                                %}
 {%     for element in fact_values                                                     %}
 {%       set _ = postfix_tpl_local_list.append(element)                               %}
@@ -74,7 +74,7 @@
 {% endif                                                                              %}
 {% if (postfix_dependent_lists is defined and postfix_dependent_lists) and
       ((postfix_dependent_lists.keys() | length) > (postfix_tpl_seen_local_lists | length)) %}
-{%   for list_key, list_values in postfix_dependent_lists.iteritems()                 %}
+{%   for list_key, list_values in postfix_dependent_lists.items()                 %}
 {%     if list_key not in postfix_tpl_seen_local_lists                                %}
 {%       set postfix_tpl_local_list = []                                              %}
 {%       for element in list_values                                                   %}
@@ -123,7 +123,7 @@
 {% if (ansible_local is defined and ansible_local) and
       (ansible_local.postfix is defined and ansible_local.postfix) and
       (ansible_local.postfix.maincf is defined and ansible_local.postfix.maincf)      %}
-{%   for fact_key, fact_value in ansible_local.postfix.maincf.iteritems()             %}
+{%   for fact_key, fact_value in ansible_local.postfix.maincf.items()             %}
 {%     set postfix_tpl_local_value = fact_value                                       %}
 {%     for entry in postfix_dependent_maincf                                          %}
 {%       if (entry.param is defined and entry.param) and (entry.param == fact_key)    %}

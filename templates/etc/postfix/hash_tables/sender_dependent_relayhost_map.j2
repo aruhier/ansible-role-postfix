@@ -6,7 +6,7 @@
 
 {% if 'client' in postfix and 'sender_dependent' in postfix %}
 {%     if postfix_sender_dependent_relayhost_map is defined and postfix_sender_dependent_relayhost_map %}
-{%         for key, value in postfix_sender_dependent_relayhost_map.iteritems() %}
+{%         for key, value in postfix_sender_dependent_relayhost_map.items() %}
 {{ "%-24s %s" | format(key, value) }}
 {%         endfor %}
 {%     else %}
