@@ -81,7 +81,7 @@ smtpd_recipient_restrictions =
 {%         set postfix_tpl_smtpd_recipient_restrictions = postfix_tpl_smtpd_recipient_restrictions + ['reject_unauth_destination'] %}
 {%     endif %}
 {%     if 'reject_unauth_destination' in postfix_tpl_smtpd_recipient_restrictions and 'mx' in postfix %}
-{%         set postfix_tpl_smtpd_recipient_restrictions = postfix_tpl_smtpd_recipient_restrictions + ['check_sender_access hash:${config_directory}/hash_tables/sender_mydomains_access','check_sender_mx_access cidr:${config_directory}/tables/mx_access.cidr', 'check_helo_mx_access cidr:${config_directory}/tables/mx_access.cidr'] %}
+{%         set postfix_tpl_smtpd_recipient_restrictions = postfix_tpl_smtpd_recipient_restrictions %}
 {%     endif %}
 {%     if postfix_tpl_smtpd_recipient_restrictions %}
 {{ ",\n".join(postfix_tpl_smtpd_recipient_restrictions) | indent(6,true) }}

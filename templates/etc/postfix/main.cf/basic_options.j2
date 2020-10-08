@@ -26,13 +26,6 @@ smtp_helo_name                  = {{ postfix_smtp_helo_name | default(ansible_fq
 
 alias_maps                      = {{ get.list('alias_maps', [ 'hash:/etc/aliases' ]) }}
 alias_database                  = hash:/etc/aliases
-{% set postfix_tpl_virtual_alias_maps = [] %}
-{% if ('mx' in postfix or 'submission' in postfix) and 'local' not in postfix %}
-{%     set postfix_tpl_virtual_alias_maps = postfix_tpl_virtual_alias_maps + ['hash:${config_directory}/hash_tables/mx_relay_virtual_alias_maps'] %}
-{% endif %}
-{% if get.list('virtual_alias_maps', postfix_tpl_virtual_alias_maps + postfix_virtual_alias_maps) %}
-virtual_alias_maps              = {{ get.list('virtual_alias_maps', postfix_tpl_virtual_alias_maps + postfix_virtual_alias_maps) }}
-{% endif %}
 
 mailbox_size_limit              = {{ postfix_mailbox_size_limit | default('0') }}
 message_size_limit              = {{ (postfix_message_size_limit | default(50) * 1024 * 1024|int)|round|int|string }}
@@ -105,12 +98,6 @@ relayhost                       = {{ postfix_relayhost }}
 {% set postfix_tpl_transport_maps = [] %}
 {% if postfix_transport_maps is defined and postfix_transport_maps %}
 {%     set postfix_tpl_transport_maps = postfix_tpl_transport_maps + postfix_transport_maps %}
-{% endif %}
-{% if 'mx' in postfix %}
-{%     set postfix_tpl_transport_maps = postfix_tpl_transport_maps + ['hash:${config_directory}/hash_tables/mx_relay_transport'] %}
-{% endif %}
-{% if 'archive' in postfix %}
-{%     set postfix_tpl_transport_maps = postfix_tpl_transport_maps + ['hash:${config_directory}/hash_tables/archive_transport'] %}
 {% endif %}
 {% if get.list('transport_maps', postfix_tpl_transport_maps) %}
 transport_maps                  = {{ get.list('transport_maps', postfix_tpl_transport_maps) }}
