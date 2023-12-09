@@ -17,4 +17,4 @@
   args:
     removes: '/etc/aliases.dpkg-divert'
 
-- include: cleanup_sasl_cyrus.yml
+- include_tasks: cleanup_sasl_cyrus.yml
